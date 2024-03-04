@@ -2,6 +2,14 @@ import express from "express";
 import bodyParser from "body-parser";
 // import pg from "pg";
 
+// for dirname to send html file
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+import fs from "fs";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+
 const app = express();
 const port = 3000;
 
@@ -21,12 +29,13 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-app.get("/", (req, res) => {
-    res.send("Home Page")
+app.get("/", (req, res) => { // done home page
+	res.sendFile(__dirname + "/views"+"/home.html");
 });
 
-app.get("/login", (req, res) => {
+app.get("/login", (req, res) => { // login page
     res.render("search.ejs");
+    
 })
 
 app.listen(port, () => {
