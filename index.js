@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import pg from "pg";
+import pg from "pg";
+import { name } from "ejs";
 
 // for dirname to send html file
 import { fileURLToPath } from "url";
@@ -13,17 +14,18 @@ const __dirname = dirname(__filename);
 const app = express();
 const port = 3000;
 
-/*
+app.use(bodyParser.urlencoded({ extended: true }));
+
+
 const db = new pg.Client({
 	user: "postgres",
 	host: "localhost",
-	database: "world",
+	database: "hack",
 	password: "asdfjkl;",
 	port: 5432,
 });
 
 db.connect();
-*/
 
 
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -40,6 +42,12 @@ app.get("/register", (req, res) => {
     res.render("register.ejs")
 })
 
+app.post("/submit", (req, res) => {
+	var body = req.body;
+	console.log(body);
+	res.render("login.ejs");
+	
+});
 
 
 app.listen(port, () => {
