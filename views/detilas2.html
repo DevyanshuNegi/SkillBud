@@ -1,0 +1,174 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>User Details Form</title>
+		<!-- <link rel="stylesheet" href="styles.css"> -->
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 0;
+				padding: 0;
+				background-color: #f4f4f4;
+			}
+
+			.container {
+				max-width: 600px;
+				margin: 50px auto;
+				background-color: #fff;
+				padding: 20px;
+				border-radius: 5px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+
+			h2 {
+				text-align: center;
+				margin-bottom: 20px;
+			}
+
+			.form-group {
+				margin-bottom: 20px;
+			}
+
+			label {
+				display: block;
+				font-weight: bold;
+			}
+
+			input[type="text"],
+			input[type="number"],
+			select,
+			textarea {
+				width: 100%;
+				padding: 8px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+			}
+
+			button[type="submit"] {
+				background-color: #4caf50;
+				color: white;
+				padding: 10px 20px;
+				border: none;
+				border-radius: 4px;
+				cursor: pointer;
+				font-size: 16px;
+			}
+
+			button[type="submit"]:hover {
+				background-color: #45a049;
+			}
+
+			@media (max-width: 768px) {
+				.container {
+					margin: 20px;
+				}
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="container">
+			<h2>User Details</h2>
+			<form>
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" required />
+				</div>
+				<div class="form-group">
+					<label for="age">Age:</label>
+					<input type="number" id="age" name="age" required />
+				</div>
+				<div class="form-group">
+					<label for="gender">Gender:</label>
+					<select id="gender" name="gender" required>
+						<option value="">Select Gender</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+						<option value="other">Other</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="batch">Batch:</label>
+					<input type="text" id="batch" name="batch" required />
+				</div>
+				<div class="form-group">
+					<label for="branch">Branch:</label>
+					<input type="text" id="branch" name="branch" required />
+				</div>
+				<div class="form-group">
+					<label for="skills">Skills:</label>
+					<select id="skills" name="skills[]" multiple required>
+						<option value="front-end">Front-end Development</option>
+						<option value="back-end">Back-end Development</option>
+						<option value="full-stack">Full Stack Development</option>
+						<option value="dsa">Data Structures and Algorithms (DSA)</option>
+						<option value="photo-editing">Photo Editing</option>
+						<option value="video-editing">Video Editing</option>
+						<option value="ui-ux">UI/UX Design</option>
+						<option value="others">Others</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label>Skills:</label>
+					<div class="checkbox-group">
+						<input
+							type="checkbox"
+							id="front-end"
+							name="skills[]"
+							value="front-end"
+						/>
+						<label for="front-end">Front-end Development</label><br />
+
+						<input
+							type="checkbox"
+							id="back-end"
+							name="skills[]"
+							value="back-end"
+						/>
+						<label for="back-end">Back-end Development</label><br />
+
+						<input
+							type="checkbox"
+							id="full-stack"
+							name="skills[]"
+							value="full-stack"
+						/>
+						<label for="full-stack">Full Stack Development</label><br />
+
+						<input type="checkbox" id="dsa" name="skills[]" value="dsa" />
+						<label for="dsa">Data Structures and Algorithms (DSA)</label><br />
+
+						<input
+							type="checkbox"
+							id="photo-editing"
+							name="skills[]"
+							value="photo-editing"
+						/>
+						<label for="photo-editing">Photo Editing</label><br />
+
+						<input
+							type="checkbox"
+							id="video-editing"
+							name="skills[]"
+							value="video-editing"
+						/>
+						<label for="video-editing">Video Editing</label><br />
+
+						<input type="checkbox" id="ui-ux" name="skills[]" value="ui-ux" />
+						<label for="ui-ux">UI/UX Design</label><br />
+
+						<input type="checkbox" id="others" name="skills[]" value="others" />
+						<label for="others">Others</label><br />
+					</div>
+				</div>
+
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>

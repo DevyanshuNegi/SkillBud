@@ -13,6 +13,7 @@ import env from "dotenv";
 const app = express();
 const port = 3000;
 const saltRounds = 10;
+var varemail = "";
 env.config();
 
 app.use(
@@ -59,29 +60,27 @@ app.get("/logout", (req, res) => {
 });
 
 app.post("/submit", (req, res) =>{
-	
+	res.send("INSIDE the submit");
 })
 
 app.get("/dash", (req, res) => {
-	console.log(req);
+	console.log(req.query);
 	if (req.isAuthenticated()) {
-		// here checking
 		res.render("dash.ejs");
 	} else {
-		res.redirect("/login");
+		console.log("Request not authenticated");
+		res.redirect("/home"); // changed here
 	}
 });
 
-app.get(
-	"/auth/google",
+app.get("/auth/google",
 	passport.authenticate("google", {
 		// * authentication
 		scope: ["profile", "email"],
 	})
 );
 
-app.get(
-	"/auth/google/dash",
+app.get("/auth/google/dash",
 	passport.authenticate("google", {
 		// * the page after the login
 		successRedirect: "/dash",
@@ -89,8 +88,12 @@ app.get(
 	})
 );
 
-app.post(
-	"/login",
+app.get("/details", (req, res) => {
+	res.render("details.ejs", {email: varemail});
+
+})
+
+app.post("/login",
 	passport.authenticate("local", {
 		// *** must use on every login
 		successRedirect: "/dash",
@@ -99,7 +102,8 @@ app.post(
 );
 
 app.post("/register", async (req, res) => {
-	const email = req.body.mail;
+	const email = req.body.username; // errorit always use username instead of email or mail
+	varemail = email;
 	const password = req.body.password;
 	console.log("the mail is ", email , " and pass is ", password);
 
@@ -109,7 +113,8 @@ app.post("/register", async (req, res) => {
 		]);
 
 		if (checkResult.rows.length > 0) {
-			res.redirect("/login");
+			req.redirect("/login"); // errorit here it must be req.redirect and not res.redirect
+
 		} else {
 			bcrypt.hash(password, saltRounds, async (err, hash) => {
 				if (err) {
@@ -122,7 +127,7 @@ app.post("/register", async (req, res) => {
 					const user = result.rows[0];
 					req.login(user, (err) => {
 						console.log("success");
-						res.redirect("/dash");
+						res.redirect("/details");
 					});
 				}
 			});
@@ -135,6 +140,7 @@ app.post("/register", async (req, res) => {
 passport.use(
 	"local",
 	new Strategy(async function verify(username, password, cb) {
+			console.log("Inside passport local")
 		try {
 			const result = await db.query("SELECT * FROM users WHERE email = $1 ", [
 				username,
@@ -158,6 +164,7 @@ passport.use(
 				return cb("User not found");
 			}
 		} catch (err) {
+			console.log("error on database");
 			console.log(err);
 		}
 	})
@@ -169,7 +176,7 @@ passport.use(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-			callbackURL: "http://localhost:3000/auth/google/dash",
+			callbackURL: "http://localhost:3000/auth/google/secrets", // here could be dash
 			userProfileURL: "https://www.googleapis.com/oauth2/v3/userinfo",
 		},
 		async (accessToken, refreshToken, profile, cb) => {

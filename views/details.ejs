@@ -1,0 +1,123 @@
+<!-- @format -->
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>User Details Form</title>
+		<!-- <link rel="stylesheet" href="../public/details.css" /> -->
+		<link rel="stylesheet" href="details.css" />
+
+	</head>
+	<body>
+		<div class="container">
+			<h2>User Details</h2>
+            <p><%= email %></p>
+			<form action="/login" method="get">
+				<div class="form-group">
+					<label for="name">Name:</label>
+					<input type="text" id="name" name="name" required />
+				</div>
+				<div class="form-group">
+					<label for="age">Age:</label>
+					<input type="number" id="age" name="age" required />
+				</div>
+				<div class="form-group">
+					<label for="gender">Gender:</label>
+					<select id="gender" name="gender" required>
+						<option value="">Select Gender</option>
+						<option value="male">Male</option>
+						<option value="female">Female</option>
+						<option value="other">Other</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="batch">Batch:</label>
+					<!-- <input type="text" id="batch" name="batch" required> -->
+					<select id="batch" name="batch" required>
+						<option value="">Select Batch</option>
+						<option value="2023">2023</option>
+						<option value="2022">2022</option>
+						<option value="2021">2021</option>
+						<option value="2020">2020</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="branch">Branch:</label>
+					<!-- <input type="text" id="branch" name="branch" required> -->
+					<select id="branch" name="branch" required>
+						<option value="">Select Branch</option>
+						<option value="core">Core</option>
+						<option value="AIML">AIML</option>
+						<option value="cyber">Cyber</option>
+						<option value="mechanical">Mechanical</option>
+					</select>
+				</div>
+
+				<div class="form-group skills">
+					<label id="skill-heading">Skills:</label>
+					<div class="checkbox-group">
+						<input
+							type="checkbox"
+							id="front-end"
+							name="skills[]"
+							value="front-end"
+						/>
+						<label for="front-end">Front-end Development</label><br />
+
+						<input
+							type="checkbox"
+							id="back-end"
+							name="skills[]"
+							value="back-end"
+						/>
+						<label for="back-end">Back-end Development</label><br />
+
+						<input
+							type="checkbox"
+							id="full-stack"
+							name="skills[]"
+							value="full-stack"
+						/>
+						<label for="full-stack">Full Stack Development</label><br />
+
+						<input type="checkbox" id="dsa" name="skills[]" value="dsa" />
+						<label for="dsa">Data Structures and Algorithms (DSA)</label><br />
+
+						<input
+							type="checkbox"
+							id="photo-editing"
+							name="skills[]"
+							value="photo-editing"
+						/>
+						<label for="photo-editing">Photo Editing</label><br />
+
+						<input
+							type="checkbox"
+							id="video-editing"
+							name="skills[]"
+							value="video-editing"
+						/>
+						<label for="video-editing">Video Editing</label><br />
+
+                        <input
+							type="checkbox"
+							id="communication"
+							name="skills[]"
+							value="communication"
+						/>
+						<label for="communication">Communication</label><br />
+
+						<input type="checkbox" id="ui-ux" name="skills[]" value="ui-ux" />
+						<label for="ui-ux">UI/UX Design</label><br />
+
+						<input type="checkbox" id="others" name="skills[]" value="others" />
+						<label for="others">Others</label><br />
+					</div>
+				</div>
+				<button type="submit">Submit</button>
+			</form>
+		</div>
+	</body>
+</html>
