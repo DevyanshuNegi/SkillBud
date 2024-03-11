@@ -1,1 +1,94 @@
-<h1>This is dash</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Cool Website</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+header {
+  /* background-color: #333; */
+  background-image: url('dash-title.jpg');
+  /* color: #fff; */
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px;
+}
+
+.hero-text {
+  flex: 1;
+  padding: 20px;
+}
+
+.hero-img {
+  flex: 1;
+  overflow: hidden;
+}
+
+.hero-img img {
+  width: 100%;
+  height: auto;
+}
+
+.btn {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.btn:hover {
+  background-color: #45a049;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome to My Cool Website</h1>
+  </header>
+  
+  <main>
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Find Your Team</h2>
+        <button class="btn">Find Team</button>
+      </div>
+      <div class="hero-img">
+        <img src="./dash-title.jpg" alt="Cool Background Image">
+      </div>
+    </section>
+    
+    <section class="hero">
+      <div class="hero-text">
+        <h2>Find Your Member</h2>
+        <button class="btn">Find Member</button>
+      </div>
+      <div class="hero-img">
+        <img src="your-image-url.jpg" alt="Cool Background Image">
+      </div>
+    </section>
+  </main>
+</body>
+</html>

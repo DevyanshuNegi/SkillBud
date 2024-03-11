@@ -13,6 +13,8 @@ import env from "dotenv";
 const app = express();
 const port = 3000;
 const saltRounds = 10;
+
+var varname = "";
 var varemail = "";
 env.config();
 
@@ -49,6 +51,31 @@ app.get("/login", (req, res) => {
 app.get("/register", (req, res) => {
 	res.render("register.ejs");
 });
+
+app.get("/save", async (req, res) => {
+	const details = req.query;
+	varname = details.varname;
+	/* details: {
+    name: 'example',
+    age: '23',
+    gender: 'female',
+    batch: '2023',
+    branch: 'core',
+    skills: [ 'back-end', 'dsa', 'video-editing' ]
+  },*/
+
+	console.log("entered the save ", req.query);
+	const skillsJSON = JSON.stringify(details.skills);
+
+  	await db.query(
+			"INSERT INTO details (email, name, date_of_birth, gender, batch, branch, skills) values($1, $2, $3, $4, $5, $6, $7) ",
+			[varemail, details.name, details.dob, details.gender, parseInt(details.batch),details.branch, skillsJSON]
+		);
+// INSERT INTO details (email, name, date_of_birth, gender, batch, branch, skills, reg_no) 
+// VALUES ('example1@example.com', 'John Negi Doe', '1990-05-15', 'Male', 2022, 'Computer Science', '["Java", "Python", "HTML/CSS"]', 123456);
+
+	res.redirect("/login");
+})
 
 app.get("/logout", (req, res) => {
 	req.logout(function (err) {

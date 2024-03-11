@@ -1,0 +1,15 @@
+CREATE TABLE details (
+    email VARCHAR(40) PRIMARY KEY,
+    name VARCHAR(30),
+    date_of_birth DATE,
+    gender VARCHAR(7),
+    batch INT,
+    branch VARCHAR(100),
+    skills JSON, -- Using JSON data type to store array of skills
+    reg_no varchar(15)
+);
+
+
+create table users
+	(email varchar(40) primary key,
+	password varchar(100))

@@ -64,10 +64,11 @@ body {
             border-radius: 8px;
         }
         .google{
-            background-color: blue;
+            background-color: rgb(0, 174, 255);
             width: 100%;
+            
             padding: 10px;
-            margin: 30px 0;
+            /* margin: 40px 20px; */
             box-sizing: border-box;
             border: 1px solid #ccc;
             border-radius: 4px;
